@@ -42,18 +42,16 @@
 
         // Make the feedback div visible
         feedbackDiv.style.display = 'block';
-
-        if (isValid) {
-            // If all validations pass
-            feedbackDiv.textContent = 'Registration successful!';
-            feedbackDiv.style.backgroundColor = '#d4edda';
-            feedbackDiv.style.color = '#155724';
-        } else {
-            // If there are validation errors
-            feedbackDiv.innerHTML = messages.join('<br>');
-            feedbackDiv.style.backgroundColor = '#ffbaba';
-            feedbackDiv.style.color = '#d8000c';
-        }
+// This is the section to edit
+    if (isValid) {
+    feedbackDiv.textContent = 'Registration successful!';
+    feedbackDiv.style.color = '#155724'; // <-- CHANGE THIS LINE
+    feedbackDiv.style.backgroundColor = '#d4edda';
+    } else {
+    feedbackDiv.innerHTML = messages.join('<br>');
+    feedbackDiv.style.color = '#d8000c'; // <-- AND CHANGE THIS LINE
+    feedbackDiv.style.backgroundColor = '#ffbaba'; 
+   }
     }
 
     // Add a 'submit' event listener to the form, calling the named function
