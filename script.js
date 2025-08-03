@@ -1,54 +1,59 @@
-// Task Requirement: Start with DOMContentLoaded Event
+// Wrap the entire script in a DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Task Requirement: Form and Feedback Division Selection
+    // Select the form and the feedback division
     const form = document.getElementById('registration-form');
     const feedbackDiv = document.getElementById('form-feedback');
 
-    // Task Requirement: Form Submission Event Listener
+    // Add a 'submit' event listener to the form
     form.addEventListener('submit', (event) => {
-        // Task Requirement: Prevent form from submitting
+        // Prevent the form from submitting to the server
         event.preventDefault();
 
-        // Task Requirement: Retrieve and Trim User Inputs
+        // Retrieve and trim user inputs
         const username = document.getElementById('username').value.trim();
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value.trim();
 
-        // Task Requirement: Initialize Validation Variables
+        // Initialize validation variables
         let isValid = true;
         const messages = [];
 
-        // Task Requirement: Username Validation (at least 3 characters)
+        // --- Validation Logic ---
+
+        // 1. Username Validation
         if (username.length < 3) {
             isValid = false;
             messages.push('Username must be at least 3 characters long.');
         }
 
-        // Task Requirement: Email Validation (must include '@' and '.')
+        // 2. Email Validation
         if (!email.includes('@') || !email.includes('.')) {
             isValid = false;
             messages.push('Please enter a valid email address.');
         }
 
-        // Task Requirement: Password Validation (at least 8 characters)
+        // 3. Password Validation
         if (password.length < 8) {
             isValid = false;
             messages.push('Password must be at least 8 characters long.');
         }
 
-        // Task Requirement: Displaying Feedback
-        feedbackDiv.style.display = "block"; // Make the feedback div visible
+        // --- Displaying Feedback ---
+
+        // Make the feedback div visible
+        feedbackDiv.style.display = 'block';
 
         if (isValid) {
-            // If validation passes
+            // If all validations pass
             feedbackDiv.textContent = 'Registration successful!';
-            feedbackDiv.style.color = '#28a745'; // Green for success
-            form.reset(); // Optional: clear the form on success
+            feedbackDiv.style.backgroundColor = '#d4edda'; // Greenish background for success
+            feedbackDiv.style.color = '#155724'; // Dark green text for success
         } else {
-            // If validation fails
-            feedbackDiv.innerHTML = messages.join('<br>'); // Join messages with line breaks
-            feedbackDiv.style.color = '#dc3545'; // Red for errors
+            // If there are validation errors
+            feedbackDiv.innerHTML = messages.join('<br>');
+            feedbackDiv.style.backgroundColor = '#ffbaba'; // Reddish background for error (from CSS)
+            feedbackDiv.style.color = '#d8000c'; // Reddish text for error (from CSS)
         }
     });
 });
